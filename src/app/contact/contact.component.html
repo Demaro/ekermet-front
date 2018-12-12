@@ -1,0 +1,206 @@
+
+<div class="container">
+<!-- Section: Contact v.3 -->
+<section class="contact-section my-5 wow fadeIn" data-wow-delay="0.5s">
+
+      <!-- Form with header -->
+      <div class="card">
+    
+        <!-- Grid row -->
+        <div class="row">
+    
+          <!-- Grid column -->
+          <div class="col-lg-8">
+    
+            <div class="card-body form">
+    
+              <!-- Header -->
+              <h3 class="mt-4"><i class="fa fa-envelope pr-2"></i>
+                Escríbenos:</h3>
+    
+              <!-- Grid row -->
+
+              <form [formGroup]="contactForm" >
+                  <div class="form-group">
+                
+              <div class="row">
+
+               
+                <!-- Grid column -->
+                <div class="col-md-6">
+                  <div class="md-form mb-0">
+                      <i class="fa fa-user prefix color"></i>
+
+                 
+                      <input type="text" *ngIf="auth.authenticated" formControlName="name"  [(ngModel)]="this.auth.userCurrent.name" id="form-contact-name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" class="form-control" [mdbValidate]="false" mdbInputDirective>
+                    
+                    
+                    
+                        <input type="text" *ngIf="!auth.authenticated" formControlName="name"  id="form-contact-name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" class="form-control" [mdbValidate]="false" mdbInputDirective>
+                    
+
+                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                        <div *ngIf="f.name.errors.required" class="error">Este campo es obligatorio</div>
+                    </div>
+                    
+                    <label for="form-contact-name" class="">Nombre</label>
+                  </div>
+                </div>
+                <!-- Grid column -->
+    
+                <!-- Grid column -->
+                <div class="col-md-6">
+                  <div class="md-form mb-0">
+                      <i class="fa fa-envelope prefix color"></i>
+
+             
+                    <input type="email" *ngIf="auth.authenticated" formControlName="email" id="form-contact-email" [(ngModel)]="this.auth.userCurrent.email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" [mdbValidate]="false" mdbInputDirective>
+                
+                
+                      <input type="email" *ngIf="!auth.authenticated" formControlName="email" id="form-contact-email"  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" [mdbValidate]="false" mdbInputDirective>
+                   
+
+                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required" class="error">Este campo es obligatorio</div>
+                        <div *ngIf="f.email.errors.pattern" class="error">
+                            Correo electrónico Incorrecto</div>
+                    </div>
+                    <label for="form-contact-email" class="">Correo Electrónico</label>
+                  </div>
+                </div>
+                <!-- Grid column -->
+    
+              </div>
+            
+              <!-- Grid row -->
+    
+              <!-- Grid row -->
+              <div class="row">
+    
+                <!-- Grid column -->
+                <div class="col-md-6">
+                  <div class="md-form mb-0">
+                      <i class="fa fa-phone prefix color"></i>
+                    <input type="number" formControlName="fono" id="form-contact-phone" class="form-control" [mdbValidate]="false"  mdbInputDirective>
+                    <label for="form-contact-phone" class="">Fono</label>
+                  </div>
+                </div>
+                <!-- Grid column -->
+    
+                <!-- Grid column -->
+                <div class="col-md-6">
+                  <div class="md-form mb-0">
+                      <i class="fa fa-building prefix color"></i>
+                    <input type="text" formControlName="company" id="form-contact-company" class="form-control" [mdbValidate]="false"  mdbInputDirective>
+                    <label for="form-contact-company" class="">Compañia</label>
+                  </div>
+                </div>
+                <!-- Grid column -->
+    
+              </div>
+
+              <!-- Grid row -->
+    
+              <!-- Grid row -->
+              <div class="row">
+
+                <!-- Grid column -->
+                <div class="col-md-12">
+                  <div class="md-form mb-0">
+                  
+                    <textarea type="text" formControlName="message" id="form-contact-message" class="form-control md-textarea" rows="3" [mdbValidate]="false" [ngClass]="{ 'is-invalid': submitted && f.message.errors }" mdbInputDirective></textarea>
+                    <div class="form-group">  
+                       
+                      
+                        <div *ngIf="loading" class="loader white btn-floating btn-lg ">
+                          
+                          </div>
+
+                          <a *ngIf="this.auth.sender" class="btn-floating btn-lg green waves-light" mdbWavesEffect>
+                              <i class="fa fa-check icon-btn"></i>
+                            </a>
+
+                        <a *ngIf="send"  class="btn-floating btn-lg blue waves-light" (click)="onSubmit()" mdbWavesEffect>
+                          <i class="fa fa-send-o icon-btn"></i>
+                        </a>
+                    </div>
+                    <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
+                        <div *ngIf="f.message.errors.required" class="error">Este campo es obligatorio</div>
+                    </div>
+                    
+                    <label for="form-contact-message">Mensaje</label>
+
+
+
+                    
+                  </div>
+                </div>
+                <!-- Grid column -->
+    
+              </div>
+
+              </div>
+              <!-- Grid row -->
+        
+
+              </form>
+
+              
+            </div>
+    
+          </div>
+          <!-- Grid column -->
+    
+          <!-- Grid column -->
+          <div class="col-lg-4">
+    
+            <div class="card contact text-center h-100 white-text">
+    
+              <h3 class="my-4 pb-2">
+                  Información del contacto</h3>
+              <ul class="text-lg-left list-unstyled ml-4">
+                <li>
+                  <p><i class="fa fa-map-marker pr-2"></i>Santiago, Providencia, Chile</p>
+                </li>
+                <li>
+                  <p><i class="fa fa-phone pr-2"></i>+ 569 475 767 08</p>
+                </li>
+                <li>
+                  <p><i class="fa fa-envelope pr-2"></i>demaromail@gmail.com</p>
+                </li>
+              </ul>
+              <hr class="hr-light my-4">
+              <ul class="list-inline text-center list-unstyled">
+                <li class="list-inline-item">
+                  <a class="p-2 fa-lg tw-ic">
+                    <i class="fa fa-github"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="p-2 fa-lg li-ic">
+                    <i class="fa fa-linkedin"> </i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a class="p-2 fa-lg ins-ic">
+                    <i class="fa fa-youtube"> </i>
+                  </a>
+                </li>
+              </ul>
+    
+            </div>
+    
+          </div>
+          <!-- Grid column -->
+    
+        </div>
+        <!-- Grid row -->
+    
+      </div>
+      <!-- Form with header -->
+    
+    </section>
+    <!-- Section: Contact v.3 -->
+                
+  </div>    
+

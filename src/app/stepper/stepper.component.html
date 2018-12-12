@@ -1,0 +1,208 @@
+
+<div linear #stepper>
+
+            <form [formGroup]="firstFormGroup" class="pdd">
+
+                        
+
+           <div *ngIf="planServices.card1">
+                <i  class="far fa-money-bill-alt fa-lg"> </i> - Gastos Fijos 
+               </div>
+            
+               <div *ngIf="planServices.card2">
+                    <i class="fas fa-piggy-bank fa-lg"></i>  - Ahorro a largo plazo
+               </div>
+          
+               <div *ngIf="planServices.card3">
+                    <i class="fas fa-glass  fa-lg"></i>  - Ocio
+               </div>
+    
+           
+               <div *ngIf="planServices.card4">
+                    <i class="fas fa-user-graduate fa-lg"></i> - Educación 
+               </div>
+           
+    
+               <div *ngIf="planServices.card5">
+                    <i class="fas fa-hand-holding-usd fa-lg"></i> - Finanzas libres
+               </div>
+           
+               <div *ngIf="planServices.card6">    
+                    <i class="fas fa-hand-holding-heart fa-lg"></i> - Donaciones 
+               </div>
+                    <hr> 
+              <br>
+      
+                    <div class="md-form input-group ">
+                      <i class="fas fa-hand-holding-usd prefix color"></i>
+                        <input #salary currencyMask matInput  type="text" [(ngModel)]="planServices.sueldo" 
+                        formControlName="salary"  name="salary" data-error="Este campo es obligatorio" data-success="ok!" id="orangeForm-salary" 
+                        [ngClass]="{ 'is-invalid': submitted && f.salary.errors }" 
+                        [options]="{ prefix: '$ ', thousands: '.', decimal: '.', precision: 0, align: 'left' }" 
+                        class="form-control"  mdbInputDirective
+                        (keydown.enter)="saveSueldo(f.salary.value)" 
+                        >
+                        <div class="input-group-prepend">
+                            <button class="btn btn-primary waves-effect m-0" type="button" (click)="saveSueldo(f.salary.value)"> <i class="fas fa-play fa-lg color"></i></button>
+                        </div>
+                        <label for="orangeForm-salary" class="label-margin">Sueldo liquido mensual</label>
+      
+                    </div>
+      
+                  <div class="form-group margin">
+    
+              </div>
+            </form>
+    
+            <form [formGroup]="form" >
+                            <div class="card" style="width: 100%;">
+                                
+                                <div class="card-body">
+
+                                         <table class="table">
+                                                <thead>
+                                                       <tr>
+                                                               <th scope="col" matTooltip="55% del sueldo a gastos fijos">Presupuesto</th>
+                                                               <th scope="col" matTooltip="Suma total valor de todos los gastos">Gasto Total</th>
+                                                               <th scope="col" matTooltip="Esto queda por gastar">Disponible</th>
+                                                              
+                                                       </tr>
+                                                </thead>
+                                                <tbody >
+
+
+                                                                <td>{{ planServices.presup | currency : '$' :true:'1.0-0' }}</td>
+                                                                <td *ngIf="this.planServices.card1">{{ planServices.totalgastos | currency:'$' :true:'1.0-0' }} </td>
+                                                                <td *ngIf="this.planServices.card2">{{ planServices.totalgastos2 | currency:'$' :true:'1.0-0' }} </td>
+                                                                <td *ngIf="this.planServices.card3"> {{ planServices.totalgastos3 | currency:'$' :true:'1.0-0' }} </td>
+                                                                <td *ngIf="this.planServices.card4">{{ planServices.totalgastos4 | currency:'$' :true:'1.0-0' }} </td>
+                                                                <td *ngIf="this.planServices.card5"> {{ planServices.totalgastos5 | currency:'$' :true:'1.0-0' }} </td>
+                                                                <td *ngIf="this.planServices.card6">{{ planServices.totalgastos56 | currency:'$' :true:'1.0-0' }} </td>
+                                                                
+                                                                <td *ngIf="this.planServices.card1"> {{ planServices.salary_less_total_gasto | currency:'$' :true:'1.0-0' }}</td>
+                                                                <td *ngIf="this.planServices.card2"> {{ planServices.salary_less_total_gasto2 | currency:'$' :true:'1.0-0' }}</td>
+                                                                <td *ngIf="this.planServices.card3"> {{ planServices.salary_less_total_gasto3 | currency:'$' :true:'1.0-0' }}</td>
+                                                                <td *ngIf="this.planServices.card4"> {{ planServices.salary_less_total_gasto4 | currency:'$' :true:'1.0-0' }}</td>
+                                                                <td *ngIf="this.planServices.card5"> {{ planServices.salary_less_total_gasto5 | currency:'$' :true:'1.0-0' }}</td>
+                                                                <td *ngIf="this.planServices.card6"> {{ planServices.salary_less_total_gasto6 | currency:'$' :true:'1.0-0' }}</td>
+                                                </tbody>
+                                            </table>
+                                       
+                                    </div>
+                                </div>
+                         
+                        <br>
+
+               <div formArrayName="debts" >
+      
+                  <div class="card">
+      
+                    <table class="table">
+                          
+                          <thead>
+                            <tr>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Monto</th>
+                            
+                                <th scope="col">              
+                                    <a (click)="stepperSnack()" 
+                                    class="btnmenu btn-floating btn-sm btn-deep-purple mx-1 waves-effect waves-light border-btn" 
+                                    matTooltip="Ayuda">
+                                    <i class="fa fa-question icon-btn"> </i>
+                                  
+                                    </a>
+           
+                                </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+
+                            <td *ngIf="loading">
+                                    <div  class="loader white btn-floating btn-lg "></div>
+                            </td>
+                              <td (click)="addNewInputField()" *ngIf="formData.controls.length === 0 && !loading" class="grey-text">
+                                  Agrege nuevo gasto
+                              </td>
+      
+                            <tr [formGroupName]="i" @flyInOut *ngFor="let debt of formData.controls; let i = index">
+                                  
+                              
+                              <td *ngIf="debt.value.id === EditRowID">
+                                  <input  matInput type="text"  [mdbValidate]="false"  
+                                  formControlName="name" class="form-control input-text" mdbInputDirective>
+                              </td>
+                                  <td  *ngIf="debt.value.id !== EditRowID">{{ debt.value.name }}</td>
+      
+                              <td *ngIf="debt.value.id === EditRowID">
+                                  <input  currencyMask matInput type="tel"  (keydown.enter)="total_reduce($event.target.value)" (keyup)="total_reduce($event.target.value)" [mdbValidate]="false"  
+                                      formControlName="value" class="form-control input-text" [options]="{ prefix: '$ ', thousands: '.', decimal: '.', precision: 0, align: 'left' }" mdbInputDirective>
+                              </td> 
+                                  <td  *ngIf="debt.value.id !== EditRowID" >{{ debt.value.value | currency:'CLP' }}</td>
+
+                                  <!-->
+                                  <td>
+                                        <mat-form-field class="example-full-width">
+                                                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date">
+                                                <mat-datepicker-toggle matSuffix [for]="picker" class="btn-floating btn-sm btn-light mx-1 waves-effect waves-light border-btn"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker></mat-datepicker>
+                                              </mat-form-field>
+                                    </td>
+                                    <-->
+                              <td>
+                                  <a  *ngIf="debt.value.id === EditRowID" (click)="okDebt(debt.value.id, debt.value.name, debt.value.value)" 
+                                   class="btnmenu btn-floating btn-sm btn-blue mx-1 waves-effect waves-light border-btn animated infinite tada"
+                                   
+                                   matTooltip="Guardar">
+                                              <i class="fa fa-save icon-btn"> </i>
+                                  </a>
+                                     
+                                      <a  *ngIf="debt.value.id !== EditRowID" (click)="editDebt(debt.value.id)" 
+                                       class="btnmenu btn-floating btn-sm btn-yellow mx-1 waves-effect waves-light border-btn"
+                                       matTooltip="Editar">
+                                              <i class="fa fa-edit icon-btn"> </i>
+                                          </a>
+                                          <a  class="btnmenu btn-floating btn-sm btn-red mx-1 waves-effect waves-light border-btn" 
+                                          (click)="removeInputField(i, debt.value.id)"
+                                          matTooltip="Borrar">
+                                              <i class="fa fa-trash icon-btn"> </i>
+                                       </a>
+      
+                              </td>
+
+
+
+      
+                            </tr>
+                           
+      
+                         
+                          </tbody>
+                        </table>
+
+                        <div  *ngIf="add_new" (click)="addNewInputField()" class="fixed-action-btn wow fadeInUp" data-wow-delay="0.5s" style="bottom: 45px; right: 24px;">
+                            <a matTooltip="Agregar" class="btn-floating btn-lg btn-success waves-effect waves-light border-btn">
+                              <i class="fa fa-plus icon-btn"></i>
+                            </a>
+                        
+                          </div>
+                      </div>
+    
+                 </div>
+      
+                 <!-- Allow new input field to be generated/added -->
+      <br>
+                     
+                <div class="form-group margin">
+                   
+                    <button mat-button  class="btn btn-primary waves-light" (click)="goDashboard()" mdbWavesEffect>Siguiente</button>
+                  </div>
+           </form>
+
+
+
+          
+        </div>
+
+
+
+

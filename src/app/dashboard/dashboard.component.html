@@ -1,0 +1,222 @@
+<div class="col-sm-8 offset-sm-2" >
+
+    
+    <div class="card top " style="width: 100%;" >
+    <div class="card-body">
+                        <!--     
+                      
+    <h3><i class="fa fa-lock"></i></h3>
+    Header-->
+    
+    <div class="form-group">
+
+<div style="width: 100%;" class="row container">
+  
+    
+                        <p class="px-5 pb-3 lead grey-text wow fadeIn" >Planificación mensual</p> 
+
+                        <h5><p class="px-5 pb-3 lead grey-text wow fadeIn" >
+                          Visualiza y administra el estado de tus seis módulos, 
+                          su presupuesto del porcentaje lo que dispones y lo que has gastado de cada uno. 
+                        </p> </h5>
+                            
+                               <ul>
+                                
+                                      <div class="card card-value-resume " style="width: 100%;" >
+                                      <div class="card-body pdd">
+                                     
+                                       
+                                        
+                                            <p class="card-value__name"><i  class="fa fa-chart-pie fa-lg"> </i> - Resumen </p>
+                                              <br>
+                                                
+                                              <div class="col-lg-22 col-md-22 col-sm-22 offset-sm-1" >
+                                                  
+                                              <div class="card-value_front chart_container">
+                                                <canvas id="pieChartResume" class="pieChart"></canvas>
+
+                                                <br>
+                                              
+                                                </div>
+                                              
+                                                <div class="card-value_front chart_container">
+                                                    <canvas id="BarChartResume" class="barChart"></canvas>
+    
+                                                   
+                                                    </div>
+                                                </div>
+                                              
+                                              <p class="card-value__name"></p>
+                                              
+                                            
+                                              
+                                          
+                                      <div class="form-group">
+          
+                                        </div>
+                                        </div>
+                                        </div>
+
+
+                                     
+                                  
+                                    </ul>
+                                        <ul>
+                                      
+                                <li class="card-value wow fadeIn" data-wow-delay="0.1s">
+                                  <div class="card-one card-value__flipper">
+                                    <div class="card-value__front">
+                                      <p class="card-value__name"><br>Gastos Fijos</p>
+                                      <p class="card-value__num">  <i class="far fa-money-bill-alt fa-lg"></i></p>
+                                      <p class="card-value__name"><span>55%</span><br>{{ planServices.percent_55 | currency:'$' :true:'1.0-0' }}</p>
+                                    </div>
+
+                                    <div class="card-value__back border-back">
+                                        <a (click)="stepperSnack(1)" matTooltip="Ayuda" class="btnmenu btn-floating btn-sm btn-deep-purple mx-1 waves-effect waves-light border-btn btn-action ml-auto mr-4">
+                                          <i class="fa fa-question pl-1 icon-btn"></i></a>
+                                          <br>
+                                          <br>
+                                            <canvas id="myChart" class="pieChart"></canvas>
+
+                                           
+                                            <br>
+        
+                                            <button (click)="adminCard(1)" class="btn btn-primary"><i class="fas fa-file-signature fa-lg"></i> Administrar</button>
+                                  
+                                    </div>
+                                  </div>
+                                </li>
+                                <li class="card-value wow fadeIn" data-wow-delay="0.2s">
+
+
+                                    
+                                  <div class="card-one card-value__flipper">
+                                     <div class="card-value__front">
+                                       <p class="card-value__name"><br>Ahorro a largo plazo</p>
+                                      <p class="card-value__num">   <i class="fas fa-piggy-bank fa-lg"></i></p>
+                                      <p class="card-value__name"><span>10%</span><br>{{ planServices.percent_10 | currency:'$' :true:'1.0-0' }}</p>
+                                    </div>
+                                    <div class="card-value__back">
+                                     
+                                        <a (click)="stepperSnack(2)" matTooltip="Ayuda" class="btnmenu btn-floating btn-sm btn-deep-purple mx-1 waves-effect waves-light border-btn btn-action ml-auto mr-4">
+                                          <i class="fa fa-question pl-1 icon-btn"></i></a>
+                                          <br>
+                                          <br>
+                                        <canvas id="myChart2" class="pieChart"></canvas>
+
+                                         
+                                          <br>
+                                                
+                                         <button (click)="adminCard(2)" class="btn btn-primary"><i class="fas fa-file-signature fa-lg"></i> Administrar</button>
+
+
+                                    </div>
+                                  </div>
+                                </li>
+                                <li class="card-value wow fadeIn" data-wow-delay="0.3s">
+                                  <div class="card-one card-value__flipper">
+                                     <div class="card-value__front">
+                                      <p class="card-value__name"><br>Ocio</p>
+                                      <p class="card-value__num"><i class="fas fa-glass  fa-lg"></i></p>
+                                      <p class="card-value__name"><span>10%</span><br>{{ planServices.percent_10 | currency:'$' :true:'1.0-0' }}</p>
+                                    </div>
+                                    <div class="card-value__back">
+
+                                  
+                                        <a (click)="stepperSnack(3)" matTooltip="Ayuda" class="btnmenu btn-floating btn-sm btn-deep-purple mx-1 waves-effect waves-light border-btn btn-action ml-auto mr-4">
+                                          <i class="fa fa-question pl-1 icon-btn"></i></a>
+                                          <br>
+                                          <br>
+                                          <canvas id="myChart3" class="pieChart"></canvas>
+                                                                                
+                                           
+                                            <br>
+                                                                                        
+                                            <button (click)="adminCard(3)" class="btn btn-primary"><i class="fas fa-file-signature fa-lg"></i> Administrar</button>
+                                        
+                                        
+                                      </div>
+                                  </div>
+                                </li>
+                                <li class="card-value wow fadeIn" data-wow-delay="0.4s">
+                                  <div class="card-one card-value__flipper">
+                                     <div class="card-value__front">
+                                      <p class="card-value__name"><br>Educación</p>
+                                      <p class="card-value__num"><i class="fas fa-user-graduate fa-lg"></i></p>
+                                      <p class="card-value__name"><span>10%</span><br>{{ planServices.percent_10 | currency:'$' :true:'1.0-0' }}</p>
+                                    </div>
+                                    <div class="card-value__back">
+
+                                     
+                                        <a (click)="stepperSnack(4)" matTooltip="Ayuda" class="btnmenu btn-floating btn-sm btn-deep-purple mx-1 waves-effect waves-light border-btn btn-action ml-auto mr-4">
+                                          <i class="fa fa-question pl-1 icon-btn"></i></a>
+                                          <br>
+                                          <br>
+                                          <canvas id="myChart4" class="pieChart"></canvas>
+                                                                                
+                                           
+                                            <br>
+                                                                                        
+                                            <button (click)="adminCard(4)" class="btn btn-primary"><i class="fas fa-file-signature fa-lg"></i> Administrar</button>
+                                        
+                                        
+                                      </div>
+                                  </div>
+                                </li>
+                                <li class="card-value wow fadeIn" data-wow-delay="0.6s">
+                                  <div class="card-one card-value__flipper">   
+                                     <div class="card-value__front">
+                                      <p class="card-value__name"><span></span><br>Finanzas libres</p>
+                                      <p class="card-value__num"><i class="fas fa-hand-holding-usd fa-lg"></i></p>
+                                      <p class="card-value__name"><span>10%</span><br>{{ planServices.percent_10 | currency:'$' :true:'1.0-0' }}</p>
+                                    </div>
+                                    <div class="card-value__back">
+
+                                   
+                                        <a (click)="stepperSnack(5)" matTooltip="Ayuda" class="btnmenu btn-floating btn-sm btn-deep-purple mx-1 waves-effect waves-light border-btn btn-action ml-auto mr-4">
+                                          <i class="fa fa-question pl-1 icon-btn"></i></a>
+                                          <br>
+                                          <br>
+                                        <canvas id="myChart5" class="pieChart"></canvas>
+                                                                                
+                                       
+                                           <br>
+                                                                                        
+                                             <button (click)="adminCard(5)" class="btn btn-primary"><i class="fas fa-file-signature fa-lg"></i> Administrar</button>
+                                        
+                                        
+                                             </div>
+                                  </div>
+                                </li>
+                                <li class="card-value wow fadeIn" data-wow-delay="0.7s">
+                                  <div class="card-one card-value__flipper">
+                                     <div class="card-value__front">
+                                      <p class="card-value__name"><span></span><br>Donaciones</p>
+                                      <p class="card-value__num"><i class="fas fa-hand-holding-heart fa-lg"></i></p>
+                                      <p class="card-value__name"><span>5%</span><br>{{ planServices.percent_5 | currency:'$' :true:'1.0-0' }}</p>
+                                    </div>
+                                    <div class="card-value__back">
+
+                                  
+                                        <a (click)="stepperSnack(6)" matTooltip="Ayuda" class="btnmenu btn-floating btn-sm btn-deep-purple mx-1 waves-effect waves-light border-btn btn-action ml-auto mr-4">
+                                          <i class="fa fa-question pl-1 icon-btn"></i></a>
+                                          <br>
+                                          <br>
+                                      <canvas id="myChart6" class="pieChart"></canvas>
+                                                                                
+                                       
+                                        <br>
+                                                                                        
+                                        <button (click)="adminCard(6)" class="btn btn-primary"><i class="fas fa-file-signature fa-lg"></i> Administrar</button>
+                                        
+                                        
+                                        </div>
+                                  </div>
+                                </li>
+                              </ul>                              
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  
