@@ -17,15 +17,15 @@ export class AuthenticationService {
               if(auth !=null){
                 this.user = afAuth.authState;
                 this.authenticated = true;
-                
+
               }
-              
+
             }
-    
-      
+
+
           )
         }
-     
+
     routernav: boolean = false;
     newRegex = "";
     newRegex_reg = "";
@@ -43,11 +43,11 @@ export class AuthenticationService {
 
     if_register: boolean = false;
 
-   
+
     error_login: boolean = false;
-  
+
     error_reg: boolean = false;
-  
+
     error_loggin_mess = "";
     getlisproduct = []
 
@@ -60,26 +60,46 @@ export class AuthenticationService {
     username_get = "";
     token = "";
 
-    
+
     login(email: string, password: string) {
-        return this.http.post<any>('https://ekermet.herokuapp.com/api/usuarios/auth-token/', { email: email, password: password })
+
+      const Acceso_Token = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Token ',
+          'Access-Control-Allow-Origin': '*'
+
+        }),
+
+      }
+
+        return this.http.post('https://ekermet.herokuapp.com/api/usuarios/auth-token/', { email: email, password: password }, Acceso_Token)
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
-                if (user && user.token) {
+                if (user) {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify(user));
                     this.authenticated = true;
 
                 }
-                
+
                 return user;
             }));
     }
 
     register(first_name: string, username: string, email: string, password: string){
-        return this.http.post<any>('https://ekermet.herokuapp.com/api/usuarios/registrar/',  { first_name: first_name, username: username, email: email, password: password })
+
+      const Acceso_Token = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': 'Token ',
+          "Access-Control-Allow-Credentials" : "true",
+        }),
+
+      }
+        return this.http.post('https://ekermet.herokuapp.com/api/usuarios/registrar/',  { first_name: first_name, username: username, email: email, password: password }, Acceso_Token)
         .pipe(map(user => {
-         
+
 
         }));
     }
@@ -109,7 +129,7 @@ export class AuthenticationService {
      doGoogleLogin(){
 
         return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-          
+
         }
 
         logout() {
@@ -125,6 +145,6 @@ processUserName(userCurrentName){
     this.username_get = this.username_array[0];
     console.log("Usuario:", this.username_get)
   }
-  
-      
+
+
 }

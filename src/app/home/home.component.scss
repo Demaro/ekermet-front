@@ -4,7 +4,7 @@
 
 .border-btn{
  border-radius: 30px
- 
+
 }
 
 .icon-btn {
@@ -23,8 +23,9 @@
     background: linear-gradient(45deg, rgba(42, 27, 161, 0.6), rgba(29, 210, 177, 0.6) 100%);
 }
 .size {
-    width: 210%;
-    height: 200%;
+  width: 150%;
+  height: 150%;
+  margin-top: 20%;
 }
 
 
@@ -37,6 +38,31 @@
     .view {
         height: 130vh !important;
     }
+
+    .size {
+      width: 180%;
+      margin-top: -10%;
+  }
+
+
+
+  }
+
+  @media (max-width: 991px) {
+    .size {
+      width: 180%;
+      margin-top: -10%;
+  }
+
+
+}
+
+
+@media (max-width: 1199px) {
+  .size {
+
+    margin-top: -20%;
+}
 
 }
 

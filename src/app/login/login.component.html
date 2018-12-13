@@ -8,14 +8,14 @@
 <div class="card wow fadeInDown" style="width: 100%;" >
     <div class="card-body">
                         <!--     Header-->
-                      
+
 <h3><i class="fa fa-lock"></i> Acceso</h3>
 
-        <div class="form-group margin">
-                <button [disabled]="loading" class="btn btn-social btn-google waves-light"   (click)="doGoogleLogin()" mdbWavesEffect> <span class="fa fa-google"></span>Entrar con google</button>
+        <div class="form-group margin md-form">
+                <button [disabled]="loading" class="btn btn-social btn-google waves-light"   (click)="doGoogleLogin()" mdbWavesEffect> <span><img class="icon-google" src="assets/icon-google.png"> </span> <span class="text-google">&nbsp; Entrar con google</span></button>
                 <button [disabled]="loading" class="btn btn-social btn-facebook waves-light" (click)="doFacebookLogin()" mdbWavesEffect> <span class="fa fa-facebook"></span>Entrar con Facebook</button>
-               
-                      
+
+
         </div>
 
 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
@@ -41,28 +41,28 @@
             </div>
             <label for="orangeForm-password">Contraseña</label>
           </div>
-          
+
     </div>
 
     <div class="form-group margin">
-        
+
         <button [disabled]="loading" class="btn btn-primary waves-light" mdbWavesEffect>Acceder</button>
-        
-       
+
+
         <div *ngIf="loading" class="loader white btn-floating btn-lg ">
-                
+
                 </div>
 
     </div>
 </form>
 
                     </div>
-    
+
                     <!--Footer-->
                     <div class="modal-footer">
                         <div class="options">
                             <p>No eres miembro? <a [routerLink]="['/register']"> Registrate!</a></p>
-                            
+
                         </div>
                     </div>
 
