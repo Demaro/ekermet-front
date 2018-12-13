@@ -5,7 +5,7 @@
     "installMode": "prefetch",
     "resources": {
       "files": [
-        "/favicon.ico",
+        "/assets/logo-eker.png",
         "/index.html",
         "/*.css",
         "/*.js"
