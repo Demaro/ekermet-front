@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  
+
 })
 export class AppComponent implements OnInit {
   currentUser: User;
@@ -19,12 +19,12 @@ export class AppComponent implements OnInit {
   username_get = "";
   showStyle: false;
 
-  version = "0.5.1";
-
-  
+  version = "0.5.3";
 
 
-  constructor(public auth: AuthenticationService, public planServices: PlanMensualService, private router: Router,) { 
+
+
+  constructor(public auth: AuthenticationService, public planServices: PlanMensualService, private router: Router,) {
   }
 
 ngOnInit(){
@@ -45,7 +45,7 @@ ngOnInit(){
   }
 
 
- 
+
 }
 
 colornavchange(){
