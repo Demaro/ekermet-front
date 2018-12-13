@@ -8,22 +8,22 @@
   "start_url": "/",
   "icons": [
     {
-      "src": "assets/logo-eker.png",
+      "src": "assets/icons/logo-eker.ico",
       "sizes": "72x72",
       "type": "image/png"
     },
     {
-      "src": "assets/logo-eker.png",
+      "src": "assets/icons/logo-eker.ico",
       "sizes": "96x96",
       "type": "image/png"
     },
     {
-      "src": "assets/logo-eker.png",
+      "src": "assets/icons/logo-eker.ico",
       "sizes": "128x128",
       "type": "image/png"
     },
     {
-      "src": "assets/logo-eker.png",
+      "src": "assets/icons/logo-eker.ico",
       "sizes": "144x144",
       "type": "image/png"
     },

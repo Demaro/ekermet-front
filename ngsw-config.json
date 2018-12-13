@@ -6,6 +6,7 @@
     "resources": {
       "files": [
         "/assets/logo-eker.png",
+        "/assets/icons/logo-eker.ico",
         "/index.html",
         "/*.css",
         "/*.js"
