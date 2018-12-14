@@ -65,10 +65,8 @@ export class AuthenticationService {
 
       const Acceso_Token = {
         headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Authorization': 'Token ',
-          'Access-Control-Allow-Origin': '*'
-
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         }),
 
       }

@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     users: User[] = [];
 
 
-    constructor(private userService: UserService, public auth: AuthenticationService, public router: Router, public cdRef: ChangeDetectorRef) {
+    constructor(private userService: UserService, public auth: AuthenticationService, public cdRef: ChangeDetectorRef) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
@@ -38,10 +38,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
         });
 
-  }
-
-  goStart() {
-    this.router.navigate['panel']
   }
 
 deleteUser(id: number) {
