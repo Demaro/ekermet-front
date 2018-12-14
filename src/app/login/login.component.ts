@@ -63,6 +63,8 @@ export class LoginComponent implements OnInit {
     onSubmit() {
         this.submitted = true;
 
+        console.log("email: ", this.f.email.value)
+
         // stop here if form is invalid
         if (this.loginForm.invalid) {
             return;
@@ -77,31 +79,25 @@ export class LoginComponent implements OnInit {
                 data => {
 
 
+                    this.authenticationService.userCurrent = data;
+
+                    //this.authenticationService.username_get = this.authenticationService.userCurrent.name
+
                     this.authenticationService.userCurrent = JSON.parse(localStorage.getItem('currentUser'));
 
                     this.authenticationService.username_get = this.authenticationService.userCurrent.name
-                    console.log(this.authenticationService.userCurrent)
 
+                    this.authenticationService.token = this.authenticationService.userCurrent.token;
+
+
+                    //console.log(this.authenticationService.authenticated)
+
+                    this.loading = false;
+                    this.zone.run(() => this.router.navigate(['panel']));
 
 
                     this.authenticationService.authenticated = true;
 
-                    if(this.authenticationService.authenticated){
-                        this.planServices.UserAuthPlan().subscribe(res =>{
-                          console.log("plan user auth:", res)
-                          this.planServices.plan_mensual = res;
-                          this.planServices.sueldo = this.planServices.plan_mensual.sueldo;
-
-                          this.loading = false;
-                          this.zone.run(() => this.router.navigate(['panel']));
-
-                        },
-                      error => {
-                        console.log("wut? ", error)
-                      })
-
-
-                      }
                 },
 
                 error =>  {
@@ -267,4 +263,3 @@ export class LoginComponent implements OnInit {
           //stop
       }
 }
-
