@@ -1,50 +1,55 @@
 import { Component, OnInit, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 
- 
+
 import { User } from '../models/user';
 import { UserService } from '../services/user_service';
 import { AuthenticationService } from '../services/authentication.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
- 
+
 @Component(
     {templateUrl: 'home.component.html',
           styleUrls: ['./home.component.scss']}
 )
 export class HomeComponent implements OnInit, AfterViewInit {
     currentUser: User;
-    users: User[] = []; 
+    users: User[] = [];
 
- 
-    constructor(private userService: UserService, public auth: AuthenticationService, public cdRef: ChangeDetectorRef) {
+
+    constructor(private userService: UserService, public auth: AuthenticationService, public router: Router, public cdRef: ChangeDetectorRef) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
 
-    ngOnInit () { 
-        setTimeout (() => { 
+    ngOnInit () {
+        setTimeout (() => {
             this.auth.colornav = false;
-        }); 
-    } 
- 
+        });
+    }
+
 
     ngAfterViewInit() {
-        setTimeout (() => { 
-            
+        setTimeout (() => {
+
         this.auth.colornav = false;
-        
+
 
         });
 
   }
- 
+
+  goStart() {
+    this.router.navigate['panel']
+  }
+
 deleteUser(id: number) {
         this.userService.delete(id).pipe(first()).subscribe(() => {
             this.loadAllUsers()
         });
 }
- 
+
     private loadAllUsers() {
         this.userService.getAll().pipe(first()).subscribe(users => {
             this.users = users;

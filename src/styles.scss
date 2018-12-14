@@ -10,9 +10,9 @@
 // if you'd like to use it without importing all of bootstrap it requires
 
 .mat-snack-bar-container {
-    
+
         padding: 25px 24px !important;
-       
+
     }
 
 
@@ -24,7 +24,7 @@ body{
 .intro-2 {
     background: url("https://mdbootstrap.com/img/Photos/Others/architecture.jpg")no-repeat center center;
     background-size: cover;
-    
+
 }
 
 .btn .fa {
@@ -61,4 +61,24 @@ h6 {
         height: 1020px;
     }
 }
+
+
+      .dark{
+        background-color: #424f95 !important;
+
+      }
+
+
+      .border-btn{
+        border-radius: 30px;
+      }
+
+      .icon-btn {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+    }
+
+
+
 
