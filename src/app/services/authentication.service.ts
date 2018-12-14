@@ -65,8 +65,9 @@ export class AuthenticationService {
 
       const Acceso_Token = {
         headers: new HttpHeaders({
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': 'application/json',
+
         }),
 
       }
@@ -89,9 +90,9 @@ export class AuthenticationService {
 
       const Acceso_Token = {
         headers: new HttpHeaders({
+          'Accept': 'application/json, text/plain, */*',
           'Content-Type': 'application/json',
-          'Authorization': 'Token ',
-          "Access-Control-Allow-Credentials" : "true",
+
         }),
 
       }
