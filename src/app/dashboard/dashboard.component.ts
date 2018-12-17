@@ -343,14 +343,14 @@ pieChart() {
 
         if(this.suma_total_gastos >= 1000000 ){
 
-          const x = this.suma_total_gastos
-          const z = this.suma_total_disponible
+          this.planServices.total_gasto = this.suma_total_gastos
+          this.planServices.total_disponible = this.suma_total_disponible
         }
         else {
 
-          const x = formatter.format(this.suma_total_gastos)
+          this.planServices.total_gasto = formatter.format(this.suma_total_gastos)
 
-          const z = formatter.format(this.suma_total_disponible)
+          this.planServices.total_disponible = formatter.format(this.suma_total_disponible)
 
 
         }
@@ -364,7 +364,7 @@ pieChart() {
                   labels: ["Total Gastado", "Total Disponible",],
                   datasets: [{
                       label: '',
-                      data: [x,  z],
+                      data: [this.planServices.total_gasto,  this.planServices.total_disponible],
                       backgroundColor: [
                           '#e0cade',
                           '#7cd8a0'
