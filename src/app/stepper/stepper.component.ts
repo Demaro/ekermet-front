@@ -167,17 +167,17 @@ export class StepperComponent implements OnInit {
                   ) 
       
       
-            this.auth.if_register = false;
-                  
+  
             console.log("arrayinput init post push: ", this.arrayinitial)
                   
             this.planServices.arrayinput = this.arrayinitial
       
       
-      
             console.log("arrayinput post push: ", this.planServices.arrayinput)
   
             this.loading = false;
+
+            this.auth.if_register = false;
       
             this.patch()
 
@@ -368,21 +368,10 @@ export class StepperComponent implements OnInit {
 
       this.nameField.nativeElement.focus();
 
-      console.log("edit status: ", this.editactivate)
       return  
   }
 
-  if(this.editactivate == true) {
 
-            this.classEditActive = true;
-    
-            console.log("edit status editactive: ", this.editactivate)
-
-            this.openSnackBar("Tienes gastos sin guardar!", "cerrar");
-    
-            return
-    
-          }
 
     console.log("Go dashboard?")
     this.router.navigate(['dashboard']);
@@ -440,9 +429,110 @@ export class StepperComponent implements OnInit {
     this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';
   }
 
+
+total_reduce_for_edit(id, name, value){
+
+    this.add_new = true;
+
+    console.log("id apuntando: ", id)
+    const control = <FormArray>this.form.controls.debts;
+    let total = control.value.reduce((a, b) => +a + +b.value, 0);
+
+    this.okDebt(id, name, value);
+  
+  
+    if(this.planServices.card1){
+  
+      this.planServices.totalgastos = total;
+  
+      this.planServices.presup = this.planServices.percent_55;
+  
+      let resta = this.planServices.percent_55 - this.planServices.totalgastos;
+      
+      this.planServices.salary_less_total_gasto = resta;
+      
+      console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto)
+  
+  
+    }
+  
+    if(this.planServices.card2) {
+  
+      this.planServices.totalgastos2 = total;
+  
+      this.planServices.presup = this.planServices.percent_10;
+      
+      let resta = this.planServices.percent_10 - this.planServices.totalgastos2
+          
+      this.planServices.salary_less_total_gasto2 = resta;
+          
+      console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto2)
+      
+      }
+  
+        if(this.planServices.card3) {
+  
+          this.planServices.totalgastos3 = total;
+          
+          this.planServices.presup = this.planServices.percent_10;
+              
+          let resta = this.planServices.percent_10 - this.planServices.totalgastos3
+                  
+          this.planServices.salary_less_total_gasto3 = resta;
+                  
+          console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto3)
+              
+        }
+  
+                if(this.planServices.card4) {
+  
+                  this.planServices.totalgastos4 = total;
+                  
+                      this.planServices.presup = this.planServices.percent_10;
+                      
+                          let resta = this.planServices.percent_10 - this.planServices.totalgastos4
+                          
+                            this.planServices.salary_less_total_gasto4= resta;
+                          
+                            console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto4)
+                      
+                        }
+              
+                        if(this.planServices.card5) {
+  
+                          this.planServices.totalgastos5 = total;
+                          
+                              this.planServices.presup = this.planServices.percent_10;
+                              
+                                  let resta = this.planServices.percent_10 - this.planServices.totalgastos5
+                                  
+                                    this.planServices.salary_less_total_gasto5 = resta;
+                                  
+                                    console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto5)
+                              
+                                }
+  
+        if(this.planServices.card6){
+  
+          this.planServices.totalgastos3 = total;
+  
+          this.planServices.presup = this.planServices.percent_5;
+          
+              let resta = this.planServices.percent_5 - this.planServices.totalgastos6
+              
+                this.planServices.salary_less_total_gasto6 = resta;
+              
+                console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto6)
+          
+            }
+
+}
+
+
 total_reduce() {
   const control = <FormArray>this.form.controls.debts;
   let total = control.value.reduce((a, b) => +a + +b.value, 0);
+
 
   if(this.planServices.card1){
 
@@ -549,7 +639,9 @@ openSnackBar(errorText: string, action: string): void {
     const control = <FormArray>this.form.controls.debts;
     // iterate your object and pushes new values
     this.planServices.arrayinput.forEach(x => {
-      control.push(this.patchValues(x.id, x.name, x.value))
+      var z = control.push(this.patchValues(x.id, x.name, x.value))
+
+      console.log("foreach: ", z)
 
     })
 
@@ -587,34 +679,14 @@ openSnackBar(errorText: string, action: string): void {
   addNewInputField() : void
   {
 
+   
+
     var lengthto5 = this.f2.debts.value.length;
     const control = <FormArray>this.form.controls.debts;
     console.log("control :",control.value)
     
     var x = control.value.length
 
-
-
-
-    if(this.editactivate == true ) {
-
-      if(x == 0){
-
-        this.editactivate = false;
-        
-      }
-      
-        console.log("edit status editactive: ", this.editactivate)
-      
-        this.openSnackBar("Tienes gastos sin guardar!", "cerrar");
-          
-        return
-          
-      }
-      else {
-
-
-        this.editactivate = true;
         const z = this.array_length = x + 1;
         
                 console.log("actual:", z)
@@ -632,7 +704,7 @@ openSnackBar(errorText: string, action: string): void {
                       this.id_actual_post = x.id
 
                       this.EditRowID = this.id_actual_post;
-                      this.editactivate = true;
+  
         
                       console.log("id actual post: ", this.id_actual_post)
         
@@ -640,6 +712,8 @@ openSnackBar(errorText: string, action: string): void {
                       this.newItem = push
 
                       control.push(this.initDebtFields());
+
+                      this.add_new = false;
         
                       console.log("Arrayinput actual: ", this.planServices.arraygastosApi)
                       
@@ -661,14 +735,15 @@ openSnackBar(errorText: string, action: string): void {
                   error =>
                   console.log("err: ", error)
                 )
-      }
 
 
   }
 
   editDebt(val){
     this.EditRowID = val;
-    this.editactivate = true;
+
+    this.add_new = false;
+ 
     console.log(val)
 
     const control = <FormArray>this.form.controls.debts;
@@ -683,7 +758,7 @@ openSnackBar(errorText: string, action: string): void {
 
  okDebt(id, name, value){
 
-  this.editactivate = false;
+console.log("id_actual al editar: ", this.id_actual_post)
   this.EditRowID = '';
   const control = <FormArray>this.form.controls.debts;
   console.log("id actual Save btn: ", id);
@@ -713,7 +788,14 @@ openSnackBar(errorText: string, action: string): void {
 
   removeInputField(i : number, id) : void
   {
-    this.add_value = false;
+  
+
+    if(!this.add_new){
+
+      this.add_new = true;
+
+    }
+
 
     console.log("id of remove: ", id)
      const control = <FormArray>this.form.controls.debts;
@@ -727,6 +809,7 @@ openSnackBar(errorText: string, action: string): void {
     var officersIds = this.planServices.arraygastosApi.map(function (items) {
       return items.id
     });
+    
 
     this.total_reduce()
 

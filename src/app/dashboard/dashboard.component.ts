@@ -60,7 +60,7 @@ export class DashboardComponent implements OnInit {
       this.planServices.card5 = false;
       this.planServices.card6 = false;
 
-      console.log("plan user auth:", res)
+
       this.planServices.plan_mensual = res;
 
       let sueldo_api = this.planServices.plan_mensual.sueldo
@@ -70,37 +70,19 @@ export class DashboardComponent implements OnInit {
         this.planServices.arrayinput = this.planServices.plan_mensual.gasto_general
 
         this.fijos = this.planServices.arrayinput.filter(gastos => gastos.sobre == 1)
-        console.log("list gastos fijos: ", this.fijos)
         this.plazo = this.planServices.arrayinput.filter(gastos => gastos.sobre == 2)
-        console.log("list gastos fijos: ", this.plazo)
         this.ocio = this.planServices.arrayinput.filter(gastos => gastos.sobre == 3)
-        console.log("list gastos fijos: ", this.ocio)
         this.educ = this.planServices.arrayinput.filter(gastos => gastos.sobre == 4)
-        console.log("list gastos fijos: ", this.educ)
         this.fina = this.planServices.arrayinput.filter(gastos => gastos.sobre == 5)
-        console.log("list gastos fijos: ", this.fina)
         this.dona = this.planServices.arrayinput.filter(gastos => gastos.sobre == 6)
 
-
-        console.log("list gastos fijos: ", this.fijos)
-
-        console.log("card 1 gastos fijos true")
-
-        console.log("new arrayinput: ", this.planServices.arrayinput)
-
-    
     this.planServices.percent_55 = (this.planServices.sueldo / 100)*55;
   
-    console.log(" %55 del sueldo:", this.planServices.percent_55)
   
     this.planServices.percent_10 = (this.planServices.sueldo / 100)*10;
   
-    console.log(" 10% ahorro of salary: ", this.planServices.percent_10)
-  
     this.planServices.percent_5 = (this.planServices.sueldo / 100)*5;
   
-  
-    console.log(" 5% ahorro of salary: ", this.planServices.percent_5)
 
     this.total_reduce()
 
@@ -137,90 +119,72 @@ total_reduce() {
 //  General all Reduce
   // Gastos Fijos
 
-  console.log("arrai input: ", this.fijos)
   var result1 = this.fijos.map(a => a.value);
 
   let total1 = result1.reduce((a, b) => +a + +b, 0);
 
-  console.log("total of fijos for api:", total1)
   this.planServices.totalgastos1 = total1;
 
   let resta1 = this.planServices.percent_55 - this.planServices.totalgastos1
 
   this.planServices.salary_less_total_gasto = resta1;
 
-  console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto)
-
 
   var result2 = this.plazo.map(a => a.value);
   
     let total2 = result2.reduce((a, b) => +a + +b, 0);
   
-    console.log("total of fijos for api:", total2)
     this.planServices.totalgastos2 = total2;
   
     let resta2 = this.planServices.percent_10 - this.planServices.totalgastos2
   
     this.planServices.salary_less_total_gasto2 = resta2;
   
-    console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto2)
-
-
     var result3 = this.ocio.map(a => a.value);
   
     let total3 = result3.reduce((a, b) => +a + +b, 0);
   
-    console.log("total of fijos for api:", total3)
     this.planServices.totalgastos3 = total3;
   
     let resta3 = this.planServices.percent_10 - this.planServices.totalgastos3
   
     this.planServices.salary_less_total_gasto3 = resta3;
   
-    console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto3)
-
 
     var result4 = this.educ.map(a => a.value);
   
     let total4 = result4.reduce((a, b) => +a + +b, 0);
   
-    console.log("total of fijos for api:", total4)
     this.planServices.totalgastos4 = total4;
   
     let resta4 = this.planServices.percent_10 - this.planServices.totalgastos4
   
     this.planServices.salary_less_total_gasto4 = resta4;
-  
-    console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto4)
-
 
 
     var result5 = this.fina.map(a => a.value);
   
     let total5= result5.reduce((a, b) => +a + +b, 0);
   
-    console.log("total of fijos for api:", total5)
     this.planServices.totalgastos5 = total5;
   
     let resta5 = this.planServices.percent_10 - this.planServices.totalgastos5
   
     this.planServices.salary_less_total_gasto5 = resta5;
   
-    console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto5)
 
     
       var result6 = this.dona.map(a => a.value);
     
       let total6= result6.reduce((a, b) => +a + +b, 0);
     
-      console.log("total of fijos for api:", total6)
+
       this.planServices.totalgastos6 = total6;
     
       let resta6 = this.planServices.percent_5 - this.planServices.totalgastos6
     
       this.planServices.salary_less_total_gasto6 = resta6;
     
-      console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto6)
 
       this.suma_total_gastos = this.planServices.totalgastos1 + this.planServices.totalgastos2 + this.planServices.totalgastos3
                                 + this.planServices.totalgastos4 + this.planServices.totalgastos5 + this.planServices.totalgastos6
@@ -320,7 +284,6 @@ adminCard(number){
 
 currencyMoney(value) {
 
-  console.log(value)
 
 }
 
@@ -342,7 +305,6 @@ pieChart() {
 
   this.planServices.salary_less_total_gasto = z;
 
-  console.log("formated: ", x)
 
 
       let htmlRef = this.elementRef.nativeElement.querySelector(`#myChart`);
@@ -371,7 +333,6 @@ pieChart() {
 
     pieChartResume() {
 
-      console.log("piechart")
       
         const formatter = new Intl.NumberFormat('de-DE', {
       
@@ -418,8 +379,7 @@ pieChart() {
 
           BarChartResume() {
             
-                  console.log("piechart")
-                  
+
                     const formatter = new Intl.NumberFormat('de-DE', {
                   
                       currency: 'USD',
@@ -438,6 +398,7 @@ pieChart() {
                     let x5 = formatter.format(this.planServices.totalgastos5)
 
                     let x6 = formatter.format(this.planServices.totalgastos6)
+
                   
                     
                     this.gastos1 = x1;
@@ -447,46 +408,43 @@ pieChart() {
                     this.gastos5 = x5;
                     this.gastos6 = x6;
 
-                    
-                            
-                  
-                        let htmlRef = this.elementRef.nativeElement.querySelector(`#BarChartResume`);
-                        this.myChart = new Chart(htmlRef, {
-                          type: 'bar',
-                          data: {
-                            labels: ["Gastos fijos", "Ahorro", "Ocio", "Educacion", "Finanzas", "Donaciones"],
-                            datasets: [{
-                              label: 'Total Gastado',
-                              data: [this.gastos1, this.gastos2, this.gastos3, this.gastos4, this.gastos5, this.gastos6,],
-                              backgroundColor: [
-                                '#5271C2',
-                                '#35a541',
-                                '#bdb235',
-                                '#db6623',
-                                '#3e5eb3',
-                                '#aa9e5c',                  
-                              ],
+                    let z1 = formatter.format(this.planServices.salary_less_total_gasto)
+                    let z2 = formatter.format(this.planServices.salary_less_total_gasto2)
+                    let z3 = formatter.format(this.planServices.salary_less_total_gasto3)
+                    let z4 = formatter.format(this.planServices.salary_less_total_gasto4)
+                    let z5 = formatter.format(this.planServices.salary_less_total_gasto5)
+                    let z6 = formatter.format(this.planServices.salary_less_total_gasto6)
 
-                              borderWidth: 1
-                            }]
-                          },
-                          options: {
-                            responsive: false,
-                            scales: {
-                              xAxes: [{
-                                ticks: {
-                                  maxRotation: 90,
-                                  minRotation: 80
-                                }
-                              }],
-                              yAxes: [{
-                                ticks: {
-                                  beginAtZero: true
-                                }
-                              }]
-                            }
-                          }
-                        });
+                    
+                    var gastadoData = {
+                      label: 'Total Gastado',
+                      data: [this.gastos1, this.gastos2, this.gastos3, this.gastos4, this.gastos5, this.gastos6],
+                      backgroundColor: '#e0cade',                                            
+
+                      
+                      
+                    }; 
+
+                    var disponibleData = {
+                      label: 'Total Disponible',
+                      data: [z1, z2, z3, z4, z5, z6],
+                      backgroundColor: '#7cd8a0'
+
+                     
+                    };
+
+                    var modulosData = {
+                      labels: ["Gastos fijos", "Ahorro", "Ocio", "Educacion", "Finanzas", "Donaciones"],
+                      datasets: [gastadoData, disponibleData]               
+                    };
+
+                    let htmlRef = this.elementRef.nativeElement.querySelector(`#BarChartResume`);
+                    this.myChart = new Chart(htmlRef, {
+                      type: 'horizontalBar',
+                      data: modulosData,
+                      
+                    });
+                  
                       
                       }
 

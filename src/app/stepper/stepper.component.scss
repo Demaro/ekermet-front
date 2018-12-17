@@ -268,4 +268,10 @@ th.mat-header-cell {
 
 }
 
-
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+    border-color: rgb(61, 97, 255);
+  }
+  
+  ::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+    background-color: #424f95!important;
+  }

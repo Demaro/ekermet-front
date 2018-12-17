@@ -113,6 +113,7 @@
                                     </a>
            
                                 </th>
+                            
                             </tr>
                           </thead>
                           <tbody>
@@ -127,16 +128,16 @@
                             <tr [formGroupName]="i" @flyInOut *ngFor="let debt of formData.controls; let i = index">
                                   
                               
-                              <td *ngIf="debt.value.id === EditRowID">
-                                  <input  matInput type="text"  [mdbValidate]="false"  
-                                  formControlName="name" class="form-control input-text" mdbInputDirective>
-                              </td>
-                                  <td  *ngIf="debt.value.id !== EditRowID">{{ debt.value.name }}</td>
-      
-                              <td *ngIf="debt.value.id === EditRowID">
-                                  <input  currencyMask matInput type="tel"  (keydown.enter)="total_reduce($event.target.value)" (keyup)="total_reduce($event.target.value)" [mdbValidate]="false"  
-                                      formControlName="value" class="form-control input-text" [options]="{ prefix: '$ ', thousands: '.', decimal: '.', precision: 0, align: 'left' }" mdbInputDirective>
-                              </td> 
+                            <td *ngIf="debt.value.id === EditRowID">
+                                        <input  matInput type="text"  [mdbValidate]="false"  
+                                        formControlName="name" (keyup.enter)="total_reduce_for_edit(debt.value.id, debt.value.name, debt.value.value)" class="form-control input-text" mdbInputDirective>
+                                </td>
+                                        <td  *ngIf="debt.value.id !== EditRowID">{{ debt.value.name }}</td>
+                
+                                <td *ngIf="debt.value.id === EditRowID">
+                                        <input  currencyMask matInput type="tel"  (keydown.enter)="total_reduce_for_edit(debt.value.id, debt.value.name, debt.value.value)" (keydown)="total_reduce(debt.value.id, debt.value.name, debt.value.value)" [mdbValidate]="false"  
+                                        formControlName="value" class="form-control input-text" [options]="{ prefix: '$ ', thousands: '.', decimal: '.', precision: 0, align: 'left' }" mdbInputDirective>
+                                </td> 
                                   <td  *ngIf="debt.value.id !== EditRowID" >{{ debt.value.value | currency:'CLP' }}</td>
 
                                   <!-->
@@ -149,8 +150,8 @@
                                     </td>
                                     <-->
                               <td>
-                                  <a  *ngIf="debt.value.id === EditRowID" (click)="okDebt(debt.value.id, debt.value.name, debt.value.value)" 
-                                   class="btnmenu btn-floating btn-sm btn-blue mx-1 waves-effect waves-light border-btn animated infinite tada"
+                                  <a  *ngIf="debt.value.id === EditRowID" (click)="total_reduce_for_edit(debt.value.id, debt.value.name, debt.value.value)" 
+                                   class="btnmenu btn-floating btn-sm btn-blue mx-1 waves-effect waves-light border-btn"
                                    
                                    matTooltip="Guardar">
                                               <i class="fa fa-save icon-btn"> </i>
@@ -166,7 +167,9 @@
                                           matTooltip="Borrar">
                                               <i class="fa fa-trash icon-btn"> </i>
                                        </a>
-      
+
+                                
+
                               </td>
 
 
@@ -179,7 +182,7 @@
                           </tbody>
                         </table>
 
-                        <div  *ngIf="add_new" (click)="addNewInputField()" class="fixed-action-btn wow fadeInUp" data-wow-delay="0.5s" style="bottom: 45px; right: 24px;">
+                        <div  *ngIf="add_new" (click)="addNewInputField()" class="fixed-action-btn wow fadeInUp" data-wow-delay="0.3s" style="bottom: 45px; right: 24px;">
                             <a matTooltip="Agregar" class="btn-floating btn-lg btn-success waves-effect waves-light border-btn">
                               <i class="fa fa-plus icon-btn"></i>
                             </a>
