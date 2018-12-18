@@ -60,6 +60,8 @@ export class AuthenticationService {
     username_get = "";
     token = "";
 
+    URL_BASE = 'http://ekermet-api.herokuapp.com';
+
 
     login(email: string, password: string) {
 
@@ -72,7 +74,7 @@ export class AuthenticationService {
 
       }
 
-        return this.http.post('https://ekermet.herokuapp.com/api/usuarios/auth-token/', { email: email, password: password }, Acceso_Token)
+        return this.http.post(this.URL_BASE + '/api/usuarios/auth-token/', { email: email, password: password }, Acceso_Token)
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
                 if (user) {
@@ -96,7 +98,7 @@ export class AuthenticationService {
         }),
 
       }
-        return this.http.post('https://ekermet.herokuapp.com/api/usuarios/registrar/',  { first_name: first_name, username: username, email: email, password: password }, Acceso_Token)
+        return this.http.post(this.URL_BASE + '/api/usuarios/registrar/',  { first_name: first_name, username: username, email: email, password: password }, Acceso_Token)
         .pipe(map(user => {
 
 
@@ -104,7 +106,7 @@ export class AuthenticationService {
     }
 
     contactsend(name: string, email: string, fono: number, company: string, message: string){
-        return this.http.post<any>('https://ekermet.herokuapp.com/api/usuarios/send_email/',  { name: name, email: email, fono: fono, company: company, message: message })
+        return this.http.post<any>(this.URL_BASE + '/api/usuarios/send_email/',  { name: name, email: email, fono: fono, company: company, message: message })
         .pipe(map(data => {
 
         }));
