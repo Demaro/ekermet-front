@@ -60,7 +60,7 @@ export class AuthenticationService {
     username_get = "";
     token = "";
 
-    URL_BASE = 'http://ekermet-api.herokuapp.com';
+    URL_BASE = 'https://ekermet-api.herokuapp.com';
 
 
     login(email: string, password: string) {
