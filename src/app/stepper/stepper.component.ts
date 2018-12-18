@@ -43,7 +43,7 @@ import { Router, ActivatedRoute } from '@angular/router';
       transition('active => inactive', animate('500ms ease-out')),
       transition('inactive => active', animate('500ms ease-in'))
     ]),
-    
+
     trigger('move', [
       state('in', style({transform: 'translateX(50%)'})),
       state('out', style({transform: 'translateX(100%)'})),
@@ -51,14 +51,14 @@ import { Router, ActivatedRoute } from '@angular/router';
       transition('out => in', animate('1s linear'))
     ]),
   ]
-    
-  
+
+
 })
 export class StepperComponent implements OnInit {
 
 
   array: any[] = [];
-  
+
   items: FormArray;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
@@ -108,12 +108,12 @@ export class StepperComponent implements OnInit {
   }
 
 
-  
+
 
   @ViewChild("salary") nameField: ElementRef;
   ngOnInit() {
 
-    
+
 
     if (this.auth.if_register) {
 
@@ -128,21 +128,23 @@ export class StepperComponent implements OnInit {
       .subscribe(data => {
         this.planServices.arrayinputinitial = data;
 
+        console.log(data)
+
         let v = this.planServices.arrayinputinitial.filter(gastos => gastos.if_default == true)
 
         this.planServices.arrayinputdefault = v;
 
-      for (let item of this.planServices.arrayinputdefault) { 
-      
+      for (let item of this.planServices.arrayinputdefault) {
+
           this.planServices.AddGasto(item.name, item.value, 1).subscribe(objs => {
-        
+
           this.arrayinitial.push(objs)
-      
+
 
           })
-        
-        
-             
+
+
+
             }
     })
 
@@ -150,13 +152,13 @@ export class StepperComponent implements OnInit {
     setTimeout(() => {
 
       console.log("arrayinput  init post push: ", this.arrayinitial)
-      
+
           var officersIds = this.arrayinitial.map(function (items) {
             return items.id
           });
-      
+
           console.log("officersIds :",officersIds)
-          
+
                   this.planServices.UpdateGastos(officersIds)
                   .pipe(first()).subscribe(data => {
                     console.log("to put for api:", data)
@@ -164,33 +166,33 @@ export class StepperComponent implements OnInit {
                   }, error => {
                     console.log(error)
                   }
-                  ) 
-      
-      
-  
+                  )
+
+
+
             console.log("arrayinput init post push: ", this.arrayinitial)
-                  
+
             this.planServices.arrayinput = this.arrayinitial
-      
-      
+
+
             console.log("arrayinput post push: ", this.planServices.arrayinput)
-  
+
             this.loading = false;
 
             this.auth.if_register = false;
-      
+
             this.patch()
 
-            
+
 
     }, 1000 )
-    
-    
-      
+
+
+
     }
 
 
-  
+
   //Initial Else
 
 
@@ -219,72 +221,72 @@ export class StepperComponent implements OnInit {
 
         if (this.planServices.card6) {
 
-                    
-          
+
+
                     this.planServices.card1 = false;
 
                     this.planServices.card_Actual = 6;
-          
+
                     let v = this.planServices.arraygastosApi.filter(gastos => gastos.sobre == 6)
-                    
+
                      this.planServices.arrayinput = v;
-                    
+
                       console.log("card 2 donaciones  true", this.planServices.arrayinput)
 
 
-                     
+
                       this.patch()
-          
+
                   }
 
         if (this.planServices.card5) {
-          
+
                     this.planServices.card1 = false;
 
                     this.planServices.card_Actual = 5;
-          
+
                     let v = this.planServices.arraygastosApi.filter(gastos => gastos.sobre == 5)
-                    
+
                      this.planServices.arrayinput = v;
-                    
+
                       console.log("card 2 finanzas true", this.planServices.arrayinput)
 
                       this.patch()
-          
+
                   }
 
         if (this.planServices.card4) {
-          
+
                     this.planServices.card1 = false;
 
                     this.planServices.card_Actual = 4;
-          
+
                     let v = this.planServices.arraygastosApi.filter(gastos => gastos.sobre == 4)
-                    
+
                      this.planServices.arrayinput = v;
-                    
+
                       console.log("card 4 educacion true", this.planServices.arrayinput)
 
                       this.patch()
-          
+
                   }
 
         if (this.planServices.card3) {
-          
+
                     this.planServices.card1 = false;
 
                     this.planServices.card_Actual = 3;
-          
+
                     let v = this.planServices.arraygastosApi.filter(gastos => gastos.sobre == 3)
-                    
+
                      this.planServices.arrayinput = v;
-                    
+
                       console.log("card 3 ocio true", this.planServices.arrayinput)
 
                       this.patch()
-          
+
                   }
-          
+
         if (this.planServices.card2) {
 
           this.planServices.card1 = false;
@@ -294,9 +296,9 @@ export class StepperComponent implements OnInit {
           let v = this.planServices.arraygastosApi.filter(gastos => gastos.sobre == 2)
 
           console.log()
-          
+
            this.planServices.arrayinput = v;
-          
+
             console.log("card 2 ahorro plazo true", this.planServices.arrayinput)
 
             this.patch()
@@ -307,7 +309,7 @@ export class StepperComponent implements OnInit {
 
           this.planServices.card_Actual = 1;
 
-          
+
 
           let v = this.planServices.arraygastosApi.filter(gastos => gastos.sobre == 1)
 
@@ -318,19 +320,19 @@ export class StepperComponent implements OnInit {
           this.patch()
 
         }
-        
+
 
     this.planServices.percent_55 = (this.planServices.sueldo / 100)*55;
-    
+
       console.log(" %55 del sueldo:", this.planServices.percent_55)
-    
+
       this.planServices.percent_10 = (this.planServices.sueldo / 100)*10;
-    
+
       console.log(" 10% ahorro of salary: ", this.planServices.percent_10)
-    
+
       this.planServices.percent_5 = (this.planServices.sueldo / 100)*5;
-    
-    
+
+
       console.log(" 5% ahorro of salary: ", this.planServices.percent_5)
 
       this.total_reduce()
@@ -350,25 +352,25 @@ export class StepperComponent implements OnInit {
 
     this.form = this.formBuilder.group({
       debts     : this.formBuilder.array([
-       
+
       ])
    });
 
   this.list = this.form.controls.debts.value
 
-  
+
   }
 
 
   goDashboard() {
 
-    
+
     this.next()
     if (this.firstFormGroup.invalid) {
 
       this.nameField.nativeElement.focus();
 
-      return  
+      return
   }
 
 
@@ -378,42 +380,42 @@ export class StepperComponent implements OnInit {
   }
 
   saveSueldo(salary) {
-    
+
     this.next()
         if (this.firstFormGroup.invalid) {
 
           this.nameField.nativeElement.focus();
-          
+
           return;
       } else{
 
-         
+
       }
-    
+
           this.planServices.EditPlan(salary).subscribe(res => {
-    
+
           this.planServices.plan_mensual = res;
           console.log(this.planServices.plan_mensual)
           this.planServices.sueldo = this.planServices.plan_mensual.sueldo;
-    
-    
-    
+
+
+
           this.planServices.percent_55 = (this.planServices.sueldo / 100)*55;
-      
+
           console.log(" %55 del sueldo:", this.planServices.percent_55)
-      
+
           this.planServices.percent_10 = (this.planServices.sueldo / 100)*10;
-      
+
           console.log(" 10% ahorro of salary: ", this.planServices.percent_10)
-      
+
           this.planServices.percent_5 = (this.planServices.sueldo / 100)*5;
-      
-      
+
+
           console.log(" 5% ahorro of salary: ", this.planServices.percent_5)
-    
+
           this.total_reduce()
-    
-    
+
+
         },
         error => {
           console.log(error)
@@ -421,9 +423,9 @@ export class StepperComponent implements OnInit {
       }
 
 
-      
+
   flip: string = 'inactive';
- 
+
 
   toggleFlip() {
     this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';
@@ -439,91 +441,91 @@ total_reduce_for_edit(id, name, value){
     let total = control.value.reduce((a, b) => +a + +b.value, 0);
 
     this.okDebt(id, name, value);
-  
-  
+
+
     if(this.planServices.card1){
-  
+
       this.planServices.totalgastos = total;
-  
+
       this.planServices.presup = this.planServices.percent_55;
-  
+
       let resta = this.planServices.percent_55 - this.planServices.totalgastos;
-      
+
       this.planServices.salary_less_total_gasto = resta;
-      
+
       console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto)
-  
-  
+
+
     }
-  
+
     if(this.planServices.card2) {
-  
+
       this.planServices.totalgastos2 = total;
-  
+
       this.planServices.presup = this.planServices.percent_10;
-      
+
       let resta = this.planServices.percent_10 - this.planServices.totalgastos2
-          
+
       this.planServices.salary_less_total_gasto2 = resta;
-          
+
       console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto2)
-      
+
       }
-  
+
         if(this.planServices.card3) {
-  
+
           this.planServices.totalgastos3 = total;
-          
+
           this.planServices.presup = this.planServices.percent_10;
-              
+
           let resta = this.planServices.percent_10 - this.planServices.totalgastos3
-                  
+
           this.planServices.salary_less_total_gasto3 = resta;
-                  
+
           console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto3)
-              
+
         }
-  
+
                 if(this.planServices.card4) {
-  
+
                   this.planServices.totalgastos4 = total;
-                  
+
                       this.planServices.presup = this.planServices.percent_10;
-                      
+
                           let resta = this.planServices.percent_10 - this.planServices.totalgastos4
-                          
+
                             this.planServices.salary_less_total_gasto4= resta;
-                          
+
                             console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto4)
-                      
+
                         }
-              
+
                         if(this.planServices.card5) {
-  
+
                           this.planServices.totalgastos5 = total;
-                          
+
                               this.planServices.presup = this.planServices.percent_10;
-                              
+
                                   let resta = this.planServices.percent_10 - this.planServices.totalgastos5
-                                  
+
                                     this.planServices.salary_less_total_gasto5 = resta;
-                                  
+
                                     console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto5)
-                              
+
                                 }
-  
+
         if(this.planServices.card6){
-  
+
           this.planServices.totalgastos3 = total;
-  
+
           this.planServices.presup = this.planServices.percent_5;
-          
+
               let resta = this.planServices.percent_5 - this.planServices.totalgastos6
-              
+
                 this.planServices.salary_less_total_gasto6 = resta;
-              
+
                 console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto6)
-          
+
             }
 
 }
@@ -541,9 +543,9 @@ total_reduce() {
     this.planServices.presup = this.planServices.percent_55;
 
     let resta = this.planServices.percent_55 - this.planServices.totalgastos;
-    
+
     this.planServices.salary_less_total_gasto = resta;
-    
+
     console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto)
 
   }
@@ -553,55 +555,55 @@ total_reduce() {
     this.planServices.totalgastos2 = total;
 
     this.planServices.presup = this.planServices.percent_10;
-    
+
     let resta = this.planServices.percent_10 - this.planServices.totalgastos2
-        
+
     this.planServices.salary_less_total_gasto2 = resta;
-        
+
     console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto2)
-    
+
     }
 
       if(this.planServices.card3) {
 
         this.planServices.totalgastos3 = total;
-        
+
         this.planServices.presup = this.planServices.percent_10;
-            
+
         let resta = this.planServices.percent_10 - this.planServices.totalgastos3
-                
+
         this.planServices.salary_less_total_gasto3 = resta;
-                
+
         console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto3)
-            
+
       }
 
               if(this.planServices.card4) {
 
                 this.planServices.totalgastos4 = total;
-                
+
                     this.planServices.presup = this.planServices.percent_10;
-                    
+
                         let resta = this.planServices.percent_10 - this.planServices.totalgastos4
-                        
+
                           this.planServices.salary_less_total_gasto4= resta;
-                        
+
                           console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto4)
-                    
+
                       }
-            
+
                       if(this.planServices.card5) {
 
                         this.planServices.totalgastos5 = total;
-                        
+
                             this.planServices.presup = this.planServices.percent_10;
-                            
+
                                 let resta = this.planServices.percent_10 - this.planServices.totalgastos5
-                                
+
                                   this.planServices.salary_less_total_gasto5 = resta;
-                                
+
                                   console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto5)
-                            
+
                               }
 
       if(this.planServices.card6){
@@ -609,13 +611,13 @@ total_reduce() {
         this.planServices.totalgastos3 = total;
 
         this.planServices.presup = this.planServices.percent_5;
-        
+
             let resta = this.planServices.percent_5 - this.planServices.totalgastos6
-            
+
               this.planServices.salary_less_total_gasto6 = resta;
-            
+
               console.log("resta salario y total gastos :", this.planServices.salary_less_total_gasto6)
-        
+
           }
 }
 
@@ -634,7 +636,7 @@ openSnackBar(errorText: string, action: string): void {
 
   patch() {
 
-  
+
     // the formarray
     const control = <FormArray>this.form.controls.debts;
     // iterate your object and pushes new values
@@ -654,10 +656,10 @@ openSnackBar(errorText: string, action: string): void {
       id:   [id],
       name: [name],
       value: [value]
-    })    
+    })
   }
 
-  
+
   initDebtFields() : FormGroup
   {
      return this.formBuilder.group({
@@ -666,7 +668,7 @@ openSnackBar(errorText: string, action: string): void {
         value : [this.value_save  , Validators.required],
 
      });
-     
+
 
   }
 
@@ -679,18 +681,18 @@ openSnackBar(errorText: string, action: string): void {
   addNewInputField() : void
   {
 
-   
+
 
     var lengthto5 = this.f2.debts.value.length;
     const control = <FormArray>this.form.controls.debts;
     console.log("control :",control.value)
-    
+
     var x = control.value.length
 
         const z = this.array_length = x + 1;
-        
+
                 console.log("actual:", z)
-      
+
                 let obj_new = control.value.pop()
 
                 this.planServices.AddGasto("Gasto #" + z,  null, this.planServices.card_Actual)
@@ -698,31 +700,31 @@ openSnackBar(errorText: string, action: string): void {
                 .subscribe(
                   data => {
                       console.log(data)
-        
+
                       x = data
-        
+
                       this.id_actual_post = x.id
 
                       this.EditRowID = this.id_actual_post;
-  
-        
+
+
                       console.log("id actual post: ", this.id_actual_post)
-        
+
                       const push = this.planServices.arraygastosApi.push({id : this.id_actual_post, name: "Gasto #" + z, value: null, is_default: false, sobre: this.planServices.card_Actual})
                       this.newItem = push
 
                       control.push(this.initDebtFields());
 
                       this.add_new = false;
-        
+
                       console.log("Arrayinput actual: ", this.planServices.arraygastosApi)
-                      
+
                       var officersIds = this.planServices.arraygastosApi.map(function (items) {
                         return items.id
                       });
 
                       console.log("officersIds :",officersIds)
-                      
+
                               this.planServices.UpdateGastos(officersIds)
                               .pipe(first()).subscribe(data => {
                                 console.log("to put for api:", data)
@@ -730,7 +732,7 @@ openSnackBar(errorText: string, action: string): void {
                               }, error => {
                                 console.log(error)
                               }
-                              )        
+                              )
                   },
                   error =>
                   console.log("err: ", error)
@@ -743,17 +745,17 @@ openSnackBar(errorText: string, action: string): void {
     this.EditRowID = val;
 
     this.add_new = false;
- 
+
     console.log(val)
 
     const control = <FormArray>this.form.controls.debts;
     console.log("control :",control.value)
-    
+
     var x = control.value.length
-    
+
       this.id_actual = val;
-    
-         
+
+
   }
 
  okDebt(id, name, value){
@@ -766,7 +768,7 @@ console.log("id_actual al editar: ", this.id_actual_post)
     this.id_actual_post = id;
 
     console.log(this.id_actual_post)
-  
+
 
   this.planServices.EditGasto(this.id_actual_post, name, value, this.planServices.card_Actual)
 
@@ -775,7 +777,7 @@ console.log("id_actual al editar: ", this.id_actual_post)
   } )
 
   let z = control.value.filter(item => item.id === id)
-  
+
 
   this.array_length
 
@@ -788,7 +790,7 @@ console.log("id_actual al editar: ", this.id_actual_post)
 
   removeInputField(i : number, id) : void
   {
-  
+
 
     if(!this.add_new){
 
@@ -809,7 +811,7 @@ console.log("id_actual al editar: ", this.id_actual_post)
     var officersIds = this.planServices.arraygastosApi.map(function (items) {
       return items.id
     });
-    
+
 
     this.total_reduce()
 
@@ -829,14 +831,14 @@ console.log("id_actual al editar: ", this.id_actual_post)
 
      if(x == 0){
        this.add_new = true;
-     } 
+     }
   }
 
 removeofArray(array, element) {
   const index = array.indexOf(element);
   array.splice(index, element)
 }
-  
+
   manage(val : any) : void
   {
      console.dir(val);
@@ -874,7 +876,7 @@ removeofArray(array, element) {
 }
 
 
- 
+
 
 }
 

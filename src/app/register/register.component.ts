@@ -93,7 +93,6 @@ export class RegisterComponent implements OnInit {
                           this.loading = false;
                           this.zone.run(() => this.router.navigate(['panel']));
 
-                          this.zone.run(() => this.router.navigate(['panel']));
 
                           this.auth.contactsend(
                               this.auth.userDataGoogle.displayName,
