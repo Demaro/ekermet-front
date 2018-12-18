@@ -13,7 +13,7 @@ export class PlanMensualService {
   sueldo: any = null
   planUserApi: any;
   arraygastosApi: any = [
-    
+
            ]
   obj_save: any;
 
@@ -37,20 +37,20 @@ export class PlanMensualService {
 
   percent_55: any = 0;
   card_Actual: number = null;
-  
+
   percent_10: any;
-  
+
   percent_5: any;
   presup: any;
   presup2: any;
-  
+
 
   arrayinputuser: any = [
 
-    
-   
+
+
           ]
-        
+
     arrayinput: any = [ ]
     arrayinputinitial: any = []
     arrayinputdefault: any = []
@@ -65,7 +65,7 @@ export class PlanMensualService {
 
 
   listAccount: PlanMensual
-  URL_BASE = 'https://ekermet.herokuapp.com/api/plan_mensual'
+  URL_BASE = 'https://ekermet-api.herokuapp.com/api/plan_mensual'
 
   constructor(public http: HttpClient, public auth: AuthenticationService) { }
 
@@ -83,29 +83,29 @@ export class PlanMensualService {
           headers: new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': 'Token ' + this.auth.userCurrent.token
-            
+
           }),
         }
-    
+
         return this.http.put(this.URL_BASE + '/edit2/' + this.auth.userCurrent.id, {user : this.auth.userCurrent.id}, Acceso_Token)
-        
+
       }
 
   UserAuthPlan(){
-    
+
         const Acceso_Token = {
           headers: new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': 'Token ' + this.auth.userCurrent.token
-            
+
           }),
         }
-    
+
         return this.http.put(this.URL_BASE + '/edit/' + this.auth.userCurrent.id, {user : this.auth.userCurrent.id}, Acceso_Token)
-        
+
       }
 
-      
+
 
 
   EditPlan(sueldo: number){
@@ -114,42 +114,42 @@ export class PlanMensualService {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Token ' + this.auth.userCurrent.token
-        
+
       }),
     }
 
     return this.http.put(this.URL_BASE + '/edit/' + this.auth.userCurrent.id, { user: this.auth.userCurrent.id, sueldo: sueldo },  Acceso_Token)
-    
+
   }
 
 
   ListGasto(){
 
     console.log("user current in PLan services list gastos ", this.auth.userCurrent)
-    
+
         const Acceso_Token = {
           headers: new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': 'Token ' + this.auth.userCurrent.token
-            
+
           }),
         }
-    
+
         return this.http.get(this.URL_BASE + '/gasto/list/',  Acceso_Token)
-        
+
       }
 
   AddGasto(name: string, value: number, sobre: number){
-    
+
         const Acceso_Token = {
           headers: new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': 'Token ' + this.auth.userCurrent.token
-            
+
           }),
         }
         return this.http.post(this.URL_BASE + '/gasto/add/', {name : name , value: value, sobre: sobre },  Acceso_Token)
-        
+
       }
 
 EditGasto(id, name, value, sobre ){
@@ -158,7 +158,7 @@ EditGasto(id, name, value, sobre ){
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Token ' + this.auth.userCurrent.token
-      
+
     }),
   }
   return this.http.put(this.URL_BASE + '/gasto/edit/' + id , {name : name , value: value, sobre: sobre },   Acceso_Token)
@@ -168,16 +168,16 @@ EditGasto(id, name, value, sobre ){
 
   UpdateGastos(gasto_general){
 
-    
+
         const Acceso_Token = {
           headers: new HttpHeaders({
             'Content-Type': 'application/json',
             'Authorization': 'Token ' + this.auth.userCurrent.token
-            
+
           }),
         }
-    
+
         return this.http.put(this.URL_BASE + '/edit2/' + this.auth.userCurrent.id, { user: this.auth.userCurrent.id, gasto_general: gasto_general },  Acceso_Token)
-        
+
       }
 }
