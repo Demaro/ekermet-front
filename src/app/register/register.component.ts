@@ -73,15 +73,15 @@ export class RegisterComponent implements OnInit {
                 data => {
 
 
+                  this.auth.if_register = true;
+
+
                     this.auth.login(this.registerForm.value.email, this.registerForm.value.password)
                     .subscribe(
 
                         data =>{
 
                           this.auth.userCurrent = data;
-
-
-
                           this.auth.userCurrent = JSON.parse(localStorage.getItem('currentUser'));
 
                           this.auth.username_get = this.auth.userCurrent.name
@@ -92,6 +92,34 @@ export class RegisterComponent implements OnInit {
 
                           this.loading = false;
                           this.zone.run(() => this.router.navigate(['panel']));
+
+                          this.zone.run(() => this.router.navigate(['panel']));
+
+                          this.auth.contactsend(
+                              this.auth.userDataGoogle.displayName,
+                              this.auth.userDataGoogle.email,
+                              0,
+                              "Demaro Create",
+                              "Nuevo Usuario Registrado!")
+
+
+                              .pipe(first())
+
+                              .subscribe(
+                                data => {
+                                  this.loading = false;
+
+
+
+                                  this.auth.authenticated = true;
+
+                                },
+                                error => {
+                                  console.log("error al enviar: ", error);
+                                }
+                              )
+
+
 
 
                           this.auth.authenticated = true;
